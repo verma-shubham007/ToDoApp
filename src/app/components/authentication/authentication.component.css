@@ -1,0 +1,42 @@
+.formSection {
+  padding: 5%;
+  border: solid 2px #C8D0D7;
+  border-radius: 30px;
+}
+
+.authHeading {
+  color: #C8D0D7;
+  font-weight: 500;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+input {
+  margin-top: 20px;
+}
+
+.actionButton {
+  width: 100%;
+  background: #329C89;
+  border: none;
+  margin-top: 20px;
+}
+
+.form-check-input:checked {
+  background-color: #329C89;
+  border-color: #329C89;
+}
+
+.activeHead {
+  color: black;
+}
+
+.activeLine {
+  border-bottom: solid black;
+}
+
+i {
+  position: absolute;
+  right: 2%;
+  top: 28%;
+}

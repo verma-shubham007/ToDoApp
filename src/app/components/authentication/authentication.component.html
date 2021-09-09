@@ -1,0 +1,63 @@
+<div class="row" style="margin: 4%;">
+  <div class="col-md-6"></div>
+  <div class="col-md-6 formSection">
+    <form [formGroup]="authForm">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="authHeading" style="margin-right: 20px;" [class.activeHead]="onSignIn"
+            (click)="togglePage(true)">
+            <span [class.activeLine]="onSignIn">Lo</span>g In</span>
+          <span class="authHeading" [class.activeHead]="!onSignIn" (click)="togglePage(false)"><span
+              [class.activeLine]="!onSignIn">Si</span>gn
+            Up</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <hr>
+          <h3 style="margin: 0px;" *ngIf="onSignIn">To Continue</h3>
+          <small *ngIf="onSignIn">We need your email & password</small>
+          <input class="form-control" formControlName="name" placeholder="Full Name" *ngIf="!onSignIn">
+          <div *ngIf="!onSignIn && authForm.controls['name'].invalid && 
+          (authForm.controls['name'].dirty || authForm.controls['name'].touched)" class="text-danger"
+            style="margin-left: 36%;">
+            <small *ngIf="authForm.controls['name'].errors && authForm.controls['name'].errors.required">
+              Full Name is Required.
+            </small>
+          </div>
+          <input class="form-control" formControlName="email" placeholder="Email">
+          <div *ngIf="authForm.controls['email'].invalid && 
+          (authForm.controls['email'].dirty || authForm.controls['email'].touched)" class="text-danger"
+            style="margin-left: 36%;">
+            <small *ngIf="authForm.controls['email'].errors && authForm.controls['email'].errors.required">
+              Email is Required.
+            </small>
+            <small *ngIf="authForm.controls['email'].errors && authForm.controls['email'].errors.pattern">
+              Please enter a valid email.
+            </small>
+          </div>
+          <div style="position: relative;">
+            <input class="form-control" formControlName="password" placeholder="Password"
+              [type]="passwordType ? 'password' : 'text'">
+            <i class="fa" [class.fa-eye]="passwordType" [class.fa-eye-slash]="!passwordType"
+              (click)="passwordType = !passwordType"></i>
+            <div *ngIf="!onSignIn && authForm.controls['password'].invalid && 
+          (authForm.controls['password'].dirty || authForm.controls['password'].touched)" class="text-danger"
+              style="margin-left: 36%;">
+              <small *ngIf="authForm.controls['name'].errors && authForm.controls['name'].errors.required">
+                Password is Required.
+              </small>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-lg btn-block actionButton" [disabled]="authForm.invalid"
+            (click)="actionButton()">{{onSignIn ? 'Log In' : 'Sign up'}}</button>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1" style="padding-top: 17px;">Remember Me</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

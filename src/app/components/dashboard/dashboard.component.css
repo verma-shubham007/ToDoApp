@@ -1,0 +1,30 @@
+.actionButton {
+  width: 100%;
+  background: #EDF3F3;
+  border: none;
+  color: #549B8B;
+  font-weight: bold;
+}
+
+.col-md-4 {
+  padding: 2%;
+  background: #F6F9F9;
+  border-radius: 25px;
+  border-right: solid 20px white;
+}
+
+textarea {
+  border: none;
+  margin-top: -2px;
+}
+
+input {
+  border: none;
+}
+
+.card {
+  margin-top: 20px;
+  border: 0px outset #999;
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
