@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit {
     title: new FormControl(null, [Validators.required]),
     description: new FormControl(null),
     type: new FormControl(null),
-    user: new FormControl(null)
+    user: new FormControl(null),
+    isEditable: new FormControl(false)
   });
   taskList: any[] = [];
   currentUser: any;
@@ -84,6 +85,27 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('rememberMe');
     this._router.navigate(['/auth']);
+  }
+
+  edit(task: any, taskType: any) {
+    task['isEditable'] = true;
+    this.newTaskForm.get('title')?.setValue(task.title);
+    this.newTaskForm.get('description')?.setValue(task.description);
+    this.newTaskForm.get('type')?.setValue(task.type);
+    this.newTaskForm.get('user')?.setValue(task.user);
+    this.newTaskForm.get('isEditable')?.setValue(true);
+  }
+
+  updateTask(taskType: any) {
+    const taskTypeItem: any = this.taskTypes.filter(item => item.key == taskType);
+    if (taskTypeItem && taskTypeItem.length) {
+      const taskItem = taskTypeItem[0].tasks.filter((item: any) => item['isEditable'] == true);
+      if (taskItem && taskItem.length) {
+        taskItem[0]['title'] = this.newTaskForm.value['title'];
+        taskItem[0]['description'] = this.newTaskForm.value['description'];
+        taskItem[0]['isEditable'] = this.newTaskForm.value['false'];
+      }
+    }
   }
 
 }

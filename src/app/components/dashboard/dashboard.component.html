@@ -21,8 +21,14 @@
         style="min-height: 200px;">
         <div class="card" *ngFor="let task of taskItem.tasks" cdkDrag>
           <div class="card-body">
-            <h5 class="card-title">{{task.title}}</h5>
-            <p class="card-text">{{task.description}}</p>
+            <h5 class="card-title" *ngIf="!task.isEditable">{{task.title}}<i class="fa fa-edit pull-right"
+                (click)="edit(task,taskItem.key)"></i></h5>
+            <input class="form-control" formControlName="title" *ngIf="task.isEditable">
+            <p class="card-text" *ngIf="!task.isEditable">{{task.description}}</p>
+            <textarea class="form-control" placeholder="Description..." formControlName="description"
+              *ngIf="task.isEditable"></textarea>
+            <button type="button" class="btn btn-primary btn-lg btn-block actionButton" *ngIf="task.isEditable"
+              [disabled]="newTaskForm.invalid" (click)="updateTask(taskItem.key)">Update</button>
             <p class="card-text">By - {{task.user}}</p>
           </div>
         </div>
